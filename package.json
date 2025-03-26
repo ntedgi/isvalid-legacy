@@ -1,6 +1,6 @@
 {
   "name": "isvalid-legacy",
-  "version": "1.6.7",
+  "version": "1.4.6",
   "description": "Fork isvalid 1.6.7 - Patch merge 1.2.2 CVE (Prototype Pollution) The Unkillable Fork",
   "main": "./index.js",
   "keywords": [
