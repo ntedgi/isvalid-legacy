@@ -160,35 +160,6 @@ var commonTests = {
 			});
 		});
 	},
-	equal: function(type, validData, invalidData) {
-		describe('equal', function()  {
-			it ('should come back with data if data is equal.', function(done) {
-				isvalid(
-					validData, {
-						equal: validData
-					}, function(err, validData) {
-						expect(err).to.be.null;
-						expect(validData).to.equal(validData);
-						done();
-					}
-				);
-			});
-			it ('should come back with error if data does not equal.', function(done) {
-				isvalid(
-					invalidData, {
-						equal: validData
-					}, function(err, data) {
-						expect(data).to.be.undefined;
-						expect(err).to.be.instanceof(ValidationError);
-						expect(err).to.have.property('validator').equal('equal');
-						expect(err).to.have.property('message').equal('Data does not equal ' + validData + '.');
-						expect(err).to.have.property('keyPath').of.length(0);
-						done();
-					}
-				);
-			});
-		});
-	},
 	custom: function() {
 		describe('custom', function() {
 			it ('should call function if custom is specified.', function(done) {
@@ -323,7 +294,7 @@ var commonTests = {
 		});
 	},
 	all: function(type, validData, invalidData) { var self = this;
-		['type', 'required', 'allowNull', 'default', 'equal', 'custom'].forEach(function(test) {
+		['type', 'required', 'allowNull', 'default', 'custom'].forEach(function(test) {
 			self[test](type, validData, invalidData);
 		});
 	}
@@ -335,8 +306,10 @@ describe('validate', function() {
 			isvalid({}, undefined, undefined);
 		}).to.throw(Error);
 	});
-	it ('should return a promise if no callback is provided', function() {
-		expect(isvalid({}, {})).to.be.instanceof(Promise);
+	it ('should throw an error if callback is not provided.', function() {
+		expect(function() {
+			isvalid({}, {}, undefined);
+		}).to.throw(Error);
 	});
 	describe('type conversion', function() {
 		it ('should convert string values into numbers if string contains a number.', function(done) {
