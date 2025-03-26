@@ -1,7 +1,7 @@
 {
   "name": "isvalid-legacy",
   "version": "1.6.7",
-  "description": "Async JSON validation library for node.js.",
+  "description": "Fork isvalid 1.6.7 - Patch merge 1.2.2 CVE (Prototype Pollution) The Unkillable Fork",
   "main": "./index.js",
   "keywords": [
     "schema",
